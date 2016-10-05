@@ -4,8 +4,97 @@
              xmlns:local="clr-namespace:RpnCalculator"
              x:Class="RpnCalculator.MainPage">
 
-	<Label Text="Welcome to Xamarin Forms!"
-           VerticalOptions="Center"
-           HorizontalOptions="Center" />
+	<ContentPage.BackgroundColor>
+		<OnPlatform x:TypeArguments="Color" iOS="#FFF0F0F0" Android="Black" />
+	</ContentPage.BackgroundColor>
+
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<Style TargetType="Button">
+				<Setter Property="BorderColor">
+					<Setter.Value>
+						<OnPlatform x:TypeArguments="Color" WinPhone="#FF404040" />
+					</Setter.Value>
+				</Setter>
+				<Setter Property="BackgroundColor">
+					<Setter.Value>
+						<OnPlatform x:TypeArguments="Color" iOS="White" WinPhone="#FF303080" />
+					</Setter.Value>
+				</Setter>
+				<Setter Property="FontSize">
+					<Setter.Value>
+						<OnPlatform x:TypeArguments="x:Double"  iOS="36" Android="36" WinPhone="56" />
+					</Setter.Value>
+				</Setter>
+			</Style>
+		</ResourceDictionary>
+	</ContentPage.Resources>
+
+	<Grid x:Name="LayoutRoot">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="1.5*" />
+			<RowDefinition  Height="*" />
+			<RowDefinition  Height="*" />
+			<RowDefinition  Height="*" />
+			<RowDefinition  Height="*" />
+			<RowDefinition  Height="*" />
+			<RowDefinition  Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<Grid.RowSpacing>
+			<OnPlatform x:TypeArguments="x:Double" iOS="8" WinPhone="-10" />
+		</Grid.RowSpacing>
+
+		<Grid.ColumnSpacing>
+			<OnPlatform x:TypeArguments="x:Double" iOS="8" WinPhone="-10" />
+		</Grid.ColumnSpacing>
+
+		<ContentView Padding="8" Grid.Row="0" Grid.ColumnSpan="4">
+			<Label x:Name="Output" Text="{Binding Output}" Grid.Column="0" XAlign="End">
+				<Label.FontSize>
+					<OnPlatform x:TypeArguments="x:Double" iOS="36" Android="48" WinPhone="56" />
+				</Label.FontSize>
+				<Label.BackgroundColor>
+					<OnPlatform x:TypeArguments="Color" Android="Yellow" />
+				</Label.BackgroundColor>
+			</Label>
+		</ContentView>
+
+		<Button Grid.Row="1" Grid.Column="0" Command="{Binding CalculatorCommand}" Text="±" CommandParameter="±" />
+		<Button Grid.Row="1" Grid.Column="1" Command="{Binding CalculatorCommand}" Text="EXP" CommandParameter="EXP" />
+		<Button Grid.Row="1" Grid.Column="2" Command="{Binding CalculatorCommand}" Text="STO" CommandParameter="STO" />
+		<Button Grid.Row="1" Grid.Column="3" Command="{Binding CalculatorCommand}" Text="RCL" CommandParameter="RCL" />
+
+		<Button Grid.Row="2" Grid.Column="0" Command="{Binding CalculatorCommand}" Text="Enter" CommandParameter="ENTER" Grid.ColumnSpan="2" />
+		<Button Grid.Row="2" Grid.Column="2" Command="{Binding CalculatorCommand}" Text="FIX" CommandParameter="FIX" />
+		<Button Grid.Row="2" Grid.Column="3" Command="{Binding CalculatorCommand}" Text="CLX" CommandParameter="CLX" />
+
+		<Button Grid.Row="3" Grid.Column="0" Command="{Binding CalculatorCommand}" Text="-" CommandParameter="-"/>
+		<Button Grid.Row="3" Grid.Column="1" Command="{Binding CalculatorCommand}" Text="7" CommandParameter="7" />
+		<Button Grid.Row="3" Grid.Column="2" Command="{Binding CalculatorCommand}" Text="8" CommandParameter="8" />
+		<Button Grid.Row="3" Grid.Column="3" Command="{Binding CalculatorCommand}" Text="9" CommandParameter="9" />
+
+		<Button Grid.Row="4" Grid.Column="0" Command="{Binding CalculatorCommand}" Text="+" CommandParameter="+"/>
+		<Button Grid.Row="4" Grid.Column="1" Command="{Binding CalculatorCommand}" Text="4" CommandParameter="4" />
+		<Button Grid.Row="4" Grid.Column="2" Command="{Binding CalculatorCommand}" Text="5" CommandParameter="5" />
+		<Button Grid.Row="4" Grid.Column="3" Command="{Binding CalculatorCommand}" Text="6" CommandParameter="6" />
+
+		<Button Grid.Row="5" Grid.Column="0" Command="{Binding CalculatorCommand}" Text="x" CommandParameter="x"/>
+		<Button Grid.Row="5" Grid.Column="1" Command="{Binding CalculatorCommand}" Text="1" CommandParameter="1" />
+		<Button Grid.Row="5" Grid.Column="2" Command="{Binding CalculatorCommand}" Text="2" CommandParameter="2" />
+		<Button Grid.Row="5" Grid.Column="3" Command="{Binding CalculatorCommand}" Text="3" CommandParameter="3" />
+
+		<Button Grid.Row="6" Grid.Column="0" Command="{Binding CalculatorCommand}" Text="÷" CommandParameter="÷"/>
+		<Button Grid.Row="6" Grid.Column="1" Command="{Binding CalculatorCommand}" Text="0" CommandParameter="0" />
+		<Button Grid.Row="6" Grid.Column="2" Command="{Binding CalculatorCommand}" Text="." CommandParameter="." />
+		<Button Grid.Row="6" Grid.Column="3" Command="{Binding CalculatorCommand}" Text="&#8592;" CommandParameter="DEL" />
+		
+	</Grid>
 
 </ContentPage>

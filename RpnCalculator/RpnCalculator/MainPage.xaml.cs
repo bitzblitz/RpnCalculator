@@ -12,6 +12,7 @@ namespace RpnCalculator
 		public MainPage()
 			{
 			InitializeComponent();
+			BindingContext = ((App)Application.Current).GetCalculatorViewModel();
 			}
 		}
 	}
