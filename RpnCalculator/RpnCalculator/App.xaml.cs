@@ -7,10 +7,12 @@ using System.Runtime.Serialization.Json;
 
 using Xamarin.Forms;
 using System.IO;
+using Xamarin.Forms.Xaml;
 
+[assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace RpnCalculator
 	{
-	public partial class App:Application
+public partial class App:Application
 		{
 		private const string _calcState = "CalculatorState";
 		private CalculatorViewModel _cvm = new CalculatorViewModel();
