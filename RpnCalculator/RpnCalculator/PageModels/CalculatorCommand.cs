@@ -1,19 +1,20 @@
-﻿using System;
+﻿using RpnCalculator.PageModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace RpnCalculator
+namespace RpnCalculator.PageModels
 	{
 	public class CalculatorCommand:ICommand
 		{
 		public event EventHandler CanExecuteChanged;
 
-		private CalculatorViewModel _vm;
+		private CalculatorPageModel _vm;
 
-		public CalculatorCommand(CalculatorViewModel VM)
+		public CalculatorCommand(CalculatorPageModel VM)
 			{
 			_vm = VM;
 			}

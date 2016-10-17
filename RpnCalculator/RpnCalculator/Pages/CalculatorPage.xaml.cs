@@ -5,14 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace RpnCalculator
+namespace RpnCalculator.Pages
 	{
-	public partial class MainPage:ContentPage
+	public partial class CalculatorPage:ContentPage
 		{
-		public MainPage()
+		public CalculatorPage()
 			{
 			InitializeComponent();
-			BindingContext = ((App)Application.Current).GetCalculatorViewModel();
 			}
 		}
 	}

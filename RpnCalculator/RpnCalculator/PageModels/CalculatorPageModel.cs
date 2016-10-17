@@ -7,17 +7,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace RpnCalculator
+namespace RpnCalculator.PageModels
 	{
-	[ImplementPropertyChanged]
-	public class CalculatorViewModel
+	public class CalculatorPageModel:FreshMvvm.FreshBasePageModel
 		{
 		private Calculator _calc = new Calculator();
 		private CalculatorCommand _calcCommand;
 
-		public CalculatorViewModel()
+		public CalculatorPageModel()
 			{
 			_calcCommand = new CalculatorCommand(this);
+			}
+
+		public override void Init(object initData)
+			{
+			base.Init(initData);
 			}
 
 		public string Output

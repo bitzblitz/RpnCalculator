@@ -8,6 +8,7 @@ using System.Runtime.Serialization.Json;
 using Xamarin.Forms;
 using System.IO;
 using Xamarin.Forms.Xaml;
+using RpnCalculator.PageModels;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace RpnCalculator
@@ -15,7 +16,6 @@ namespace RpnCalculator
 public partial class App:Application
 		{
 		private const string _calcState = "CalculatorState";
-		private CalculatorViewModel _cvm = new CalculatorViewModel();
 
 		private string Serialize<T>(T Obj)
 			{
@@ -39,7 +39,7 @@ public partial class App:Application
 			{
 			InitializeComponent();
 
-			MainPage = new RpnCalculator.MainPage();
+			MainPage = FreshMvvm.FreshPageModelResolver.ResolvePageModel<CalculatorPageModel>();  // dependency injection and MVVM plumbing.
 			}
 
 		protected override void OnStart()
@@ -47,13 +47,13 @@ public partial class App:Application
 			if(Application.Current.Properties.ContainsKey(_calcState))
 				{
 				string state = (string)Application.Current.Properties[_calcState];
-				_cvm.SetState(Deserialize<CalculatorState>(state));
+				GetCalculatorViewModel().SetState(Deserialize<CalculatorState>(state));
 				}
 			}
 
 		protected override void OnSleep()
 			{
-			Application.Current.Properties[_calcState] = Serialize(_cvm.GetState());
+			Application.Current.Properties[_calcState] = Serialize(GetCalculatorViewModel().GetState());
 			}
 
 		protected override void OnResume()
@@ -61,9 +61,9 @@ public partial class App:Application
 			// Handle when your app resumes
 			}
 
-		public CalculatorViewModel GetCalculatorViewModel()
+		public CalculatorPageModel GetCalculatorViewModel()
 			{
-			return _cvm;
+			return (CalculatorPageModel)MainPage.BindingContext;
 			}
 		}
 	}
