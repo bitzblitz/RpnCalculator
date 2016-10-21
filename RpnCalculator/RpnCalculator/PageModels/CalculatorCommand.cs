@@ -35,8 +35,7 @@ namespace RpnCalculator.PageModels
 
 		public void UpdateEnable()
 			{
-			if(CanExecuteChanged != null)
-				CanExecuteChanged(this, new EventArgs());
+				CanExecuteChanged?.Invoke(this, new EventArgs());
 			}
 		}
 	}
