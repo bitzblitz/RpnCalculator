@@ -38,7 +38,6 @@ public partial class App:Application
 		public App()
 			{
 			InitializeComponent();
-
 			MainPage = FreshMvvm.FreshPageModelResolver.ResolvePageModel<CalculatorPageModel>();  // dependency injection and MVVM plumbing.
 			}
 
