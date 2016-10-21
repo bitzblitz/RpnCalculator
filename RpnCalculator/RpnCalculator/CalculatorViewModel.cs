@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -14,6 +15,11 @@ namespace RpnCalculator
 
 		private Calculator _calc = new Calculator();
 		private CalculatorCommand _calcCommand;
+
+		private void OnPropertyChanged([CallerMemberName] string PropName = "")
+			{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropName));
+			}
 
 		public CalculatorViewModel()
 			{
@@ -28,8 +34,7 @@ namespace RpnCalculator
 				}
 			set
 				{
-				if(PropertyChanged != null)
-					PropertyChanged(this, new PropertyChangedEventArgs(nameof(Output)));
+				OnPropertyChanged();
 				}
 			}
 
@@ -52,15 +57,13 @@ namespace RpnCalculator
 		internal void Execute(string parameter)
 			{
 			Output = _calc.Execute(parameter);
-			if(PropertyChanged != null)
-				PropertyChanged(this, new PropertyChangedEventArgs(nameof(StackSize)));
+			OnPropertyChanged(nameof(StackSize));
 			}
 
 		public void SetState(CalculatorState State)
 			{
 			Output = _calc.SetCalculatorState(State);
-			if(PropertyChanged != null)
-				PropertyChanged(this, new PropertyChangedEventArgs(nameof(StackSize)));
+			OnPropertyChanged(nameof(StackSize));
 			_calcCommand.UpdateEnable();
 			}
 
